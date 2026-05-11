@@ -1,5 +1,6 @@
 import { useMemo } from "react";
-import { getLabToolUrls } from "../../config/labTools.js";
+import { Link } from "react-router-dom";
+import { LAB_TOOL_ROUTES } from "../../config/labTools.js";
 
 function LabParticles({ className = "" }) {
   const dots = useMemo(
@@ -215,8 +216,6 @@ function CtaPill({ children, accent }) {
 }
 
 export function LabToolsSection() {
-  const urls = getLabToolUrls();
-
   return (
     <div className="relative">
       <div
@@ -240,8 +239,8 @@ export function LabToolsSection() {
 
       <div className="mx-auto max-w-6xl space-y-5 px-4 pb-20 md:space-y-6 md:pb-28">
         {/* Hero — Synth */}
-        <a
-          href={urls.synth}
+        <Link
+          to={LAB_TOOL_ROUTES.synth}
           className="group relative block min-h-[320px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink md:min-h-[380px] lg:min-h-[420px]"
         >
           <article className={`${glassCardBase("min-h-[inherit]")} h-full`}>
@@ -265,13 +264,13 @@ export function LabToolsSection() {
               </div>
             </div>
           </article>
-        </a>
+        </Link>
 
         {/* Secondary grid */}
         <div className="grid gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
           {/* Detector */}
-          <a
-            href={urls.detector}
+          <Link
+            to={LAB_TOOL_ROUTES.detector}
             className="group relative block min-h-[280px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink md:min-h-[300px]"
           >
             <article className={`${glassCardBase("h-full min-h-[inherit]")}`}>
@@ -287,11 +286,11 @@ export function LabToolsSection() {
                 <CtaPill accent>Open detector</CtaPill>
               </div>
             </article>
-          </a>
+          </Link>
 
           {/* Find the frequency — arcade */}
-          <a
-            href={urls.frequencyGame}
+          <Link
+            to={LAB_TOOL_ROUTES.findthefrequency}
             className="group relative block min-h-[280px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink md:min-h-[300px]"
           >
             <article
@@ -309,7 +308,7 @@ export function LabToolsSection() {
                 <CtaPill accent>Play game</CtaPill>
               </div>
             </article>
-          </a>
+          </Link>
 
           {/* Connect — coming soon */}
           <article
