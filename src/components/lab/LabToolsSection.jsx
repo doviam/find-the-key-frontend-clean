@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { LAB_TOOL_ROUTES } from "../../config/labTools.js";
+import { TOOL_PATHS } from "../../config/toolRoutes.js";
 
 function LabParticles({ className = "" }) {
   const dots = useMemo(
@@ -240,7 +240,7 @@ export function LabToolsSection() {
       <div className="mx-auto max-w-6xl space-y-5 px-4 pb-20 md:space-y-6 md:pb-28">
         {/* Hero — Synth */}
         <Link
-          to={LAB_TOOL_ROUTES.synth}
+          to={TOOL_PATHS.synth}
           className="group relative block min-h-[320px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink md:min-h-[380px] lg:min-h-[420px]"
         >
           <article className={`${glassCardBase("min-h-[inherit]")} h-full`}>
@@ -270,7 +270,7 @@ export function LabToolsSection() {
         <div className="grid gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
           {/* Detector */}
           <Link
-            to={LAB_TOOL_ROUTES.detector}
+            to={TOOL_PATHS.detector}
             className="group relative block min-h-[280px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink md:min-h-[300px]"
           >
             <article className={`${glassCardBase("h-full min-h-[inherit]")}`}>
@@ -290,7 +290,7 @@ export function LabToolsSection() {
 
           {/* Find the frequency — arcade */}
           <Link
-            to={LAB_TOOL_ROUTES.findthefrequency}
+            to={TOOL_PATHS.findthefrequency}
             className="group relative block min-h-[280px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink md:min-h-[300px]"
           >
             <article

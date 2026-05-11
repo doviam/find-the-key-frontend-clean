@@ -15,7 +15,10 @@ import { Tools } from "./pages/Tools.jsx";
 import { Shows } from "./pages/Shows.jsx";
 import { Keys } from "./pages/Keys.jsx";
 import { KeySession } from "./pages/KeySession.jsx";
-import { LabToolEmbedPage } from "./pages/tools/LabToolEmbedPage.jsx";
+import { SynthPage } from "./pages/tools/SynthPage.jsx";
+import { DetectorPage } from "./pages/tools/DetectorPage.jsx";
+import { FindTheFrequencyPage } from "./pages/tools/FindTheFrequencyPage.jsx";
+import { TOOL_PATHS } from "./config/toolRoutes.js";
 
 function PrivateRoute({ children }) {
   const { user, loading } = useAuth();
@@ -68,9 +71,9 @@ export default function App() {
         <Route path="/keys/:slug" element={<KeySession />} />
         <Route path="/keys" element={<Keys />} />
         <Route path="/herramientas" element={<Tools />} />
-        <Route path="/synth" element={<LabToolEmbedPage toolKey="synth" />} />
-        <Route path="/detector" element={<LabToolEmbedPage toolKey="detector" />} />
-        <Route path="/findthefrequency" element={<LabToolEmbedPage toolKey="frequencyGame" />} />
+        <Route path={TOOL_PATHS.synth} element={<SynthPage />} />
+        <Route path={TOOL_PATHS.detector} element={<DetectorPage />} />
+        <Route path={TOOL_PATHS.findthefrequency} element={<FindTheFrequencyPage />} />
         <Route path="/u/:id" element={<PublicProfile />} />
         <Route
           path="/dashboard"

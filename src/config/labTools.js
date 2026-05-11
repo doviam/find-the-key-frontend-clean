@@ -1,13 +1,4 @@
 /**
- * Rutas SPA de cada herramienta (deben coincidir con las `<Route>` en App.jsx).
- */
-export const LAB_TOOL_ROUTES = {
-  synth: "/synth",
-  detector: "/detector",
-  findthefrequency: "/findthefrequency",
-};
-
-/**
  * URLs del documento embebido (iframe).
  * En dev, Vite sirve /lab/* desde el monorepo (ver vite.config.js).
  * En producción, define VITE_LAB_* o copia los builds a public/lab/.
