@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
 import { buttonClass } from "./Button.jsx";
 import { FooterSocialIcons } from "./FooterSocialIcons.jsx";
@@ -10,7 +10,10 @@ const LOGO_SRC = "/find-the-key-logo-transparent.png?v=1";
 const navCls = ({ isActive }) =>
   `text-sm font-medium ${isActive ? "text-accent" : "text-ink-muted hover:text-white"}`;
 
-export function Layout({ children }) {
+/**
+ * Layout global del sitio: backdrop, navbar, footer y `<Outlet />` para rutas públicas.
+ */
+export function MainLayout() {
   const { user, logout, loading } = useAuth();
 
   return (
@@ -26,10 +29,6 @@ export function Layout({ children }) {
               to="/"
               className="group block shrink-0 [perspective:1000px] outline-none ring-accent/40 focus-visible:ring-2 ring-offset-2 ring-offset-black/20"
             >
-              {/*
-                Giro continuo en Y: una sola cara plana “desaparece” al ponerse de canto.
-                Dos caras con la misma imagen (0° y 180°) evita el hueco en 90°/270°.
-              */}
               <div
                 className="relative inline-block transform-gpu [transform-style:preserve-3d] motion-safe:animate-logo-spin-y motion-reduce:animate-none [@media(hover:hover)]:group-hover:[animation-play-state:paused]"
               >
@@ -105,7 +104,9 @@ export function Layout({ children }) {
           </div>
         </header>
         <div className="flex min-h-0 flex-1 flex-col bg-ink/88 backdrop-blur-[2px]">
-          <main className="flex-1">{children}</main>
+          <main className="flex min-h-0 flex-1 flex-col">
+            <Outlet />
+          </main>
           <footer className="border-t border-white/10 py-8 text-center text-xs text-ink-muted">
             <div className="flex flex-col items-center gap-3">
               <FooterSocialIcons />

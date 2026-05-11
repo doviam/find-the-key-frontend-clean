@@ -1,6 +1,13 @@
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import { useAuth } from "./context/AuthContext.jsx";
-import { Layout } from "./components/Layout.jsx";
+import { MainLayout } from "./components/MainLayout.jsx";
+import { ToolLayout } from "./components/ToolLayout.jsx";
 import { Home } from "./pages/Home.jsx";
 import { Login } from "./pages/Login.jsx";
 import { Register } from "./pages/Register.jsx";
@@ -59,48 +66,55 @@ function ArtistRoute({ children }) {
 
 export default function App() {
   return (
-    <Layout>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/feed" element={<Feed />} />
-        <Route path="/discover" element={<Discover />} />
-        <Route path="/studio" element={<Studio />} />
-        <Route path="/shows" element={<Shows />} />
-        <Route path="/keys/:slug" element={<KeySession />} />
-        <Route path="/keys" element={<Keys />} />
-        <Route path="/herramientas" element={<Tools />} />
-        <Route path={TOOL_PATHS.synth} element={<SynthPage />} />
-        <Route path={TOOL_PATHS.detector} element={<DetectorPage />} />
-        <Route path={TOOL_PATHS.findthefrequency} element={<FindTheFrequencyPage />} />
-        <Route path="/u/:id" element={<PublicProfile />} />
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/profile/edit"
-          element={
-            <PrivateRoute>
-              <ProfileEdit />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/upload"
-          element={
-            <ArtistRoute>
-              <Upload />
-            </ArtistRoute>
-          }
-        />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        {/* Primero: rutas de Lab (paths estáticos); si van después del `*` del MainLayout, /synth puede resolverse mal */}
+        <Route element={<ToolLayout />}>
+          <Route path={TOOL_PATHS.synth} element={<SynthPage />} />
+          <Route path={TOOL_PATHS.detector} element={<DetectorPage />} />
+          <Route path={TOOL_PATHS.findthefrequency} element={<FindTheFrequencyPage />} />
+        </Route>
+
+        {/* Sitio principal: un solo navbar + footer */}
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/feed" element={<Feed />} />
+          <Route path="/discover" element={<Discover />} />
+          <Route path="/studio" element={<Studio />} />
+          <Route path="/shows" element={<Shows />} />
+          <Route path="/keys/:slug" element={<KeySession />} />
+          <Route path="/keys" element={<Keys />} />
+          <Route path="/herramientas" element={<Tools />} />
+          <Route path="/u/:id" element={<PublicProfile />} />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/profile/edit"
+            element={
+              <PrivateRoute>
+                <ProfileEdit />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/upload"
+            element={
+              <ArtistRoute>
+                <Upload />
+              </ArtistRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
       </Routes>
-    </Layout>
+    </BrowserRouter>
   );
 }

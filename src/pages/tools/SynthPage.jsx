@@ -1,6 +1,9 @@
 import { LabToolEmbedPage } from "./LabToolEmbedPage.jsx";
 
-/** Ruta SPA: `/synth` — iframe → ver `getLabToolUrls()` en `config/labTools.js`. */
+/**
+ * `/synth` — solo el sintetizador embebido (fullscreen bajo ToolLayout).
+ * No Home, sin HeroSection, sin Layout global.
+ */
 export function SynthPage() {
   return <LabToolEmbedPage toolKey="synth" />;
 }
